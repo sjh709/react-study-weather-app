@@ -7,11 +7,12 @@ import ClipLoader from 'react-spinners/ClipLoader';
 const API_KEY = process.env.REACT_APP_WEATHER_KEY;
 
 function App() {
-  const cities = ['Taipei', 'Paris', 'London', 'Jeju'];
+  const cities = ['Current', 'Taipei', 'Paris', 'London', 'Jeju'];
   const [weather, setWeather] = useState(null);
   const [today, setToday] = useState(null);
   const [city, setCity] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [apiError, setApiError] = useState('');
 
   const getCurrentLocation = () => {
     navigator.geolocation.getCurrentPosition((position) => {
@@ -22,12 +23,17 @@ function App() {
   };
 
   const getWeatherByCurrentLocation = async (lat, lon) => {
-    let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`;
-    setLoading(true);
-    let response = await fetch(url);
-    let data = await response.json();
-    setWeather(data);
-    setLoading(false);
+    try {
+      let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`;
+      let response = await fetch(url);
+      let data = await response.json();
+
+      setWeather(data);
+      setLoading(false);
+    } catch (e) {
+      setApiError(e.message);
+      setLoading(false);
+    }
   };
 
   const getCurrentDate = () => {
@@ -42,18 +48,33 @@ function App() {
   };
 
   const getWeatherbyCity = async () => {
-    let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`;
-    setLoading(true);
-    let response = await fetch(url);
-    let data = await response.json();
-    setWeather(data);
-    setLoading(false);
+    try {
+      let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`;
+      let response = await fetch(url);
+      let data = await response.json();
+
+      setWeather(data);
+      setLoading(false);
+    } catch (e) {
+      setApiError(e.message);
+      setLoading(false);
+    }
+  };
+
+  const handleCityChange = (city) => {
+    if (city === 'Current') {
+      setCity(null);
+    } else {
+      setCity(city);
+    }
   };
 
   useEffect(() => {
     if (city === null) {
+      setLoading(true);
       getCurrentLocation();
     } else {
+      setLoading(true);
       getWeatherbyCity();
     }
     getCurrentDate();
@@ -68,7 +89,11 @@ function App() {
       ) : (
         <div className='main'>
           <WeatherBox weather={weather} today={today} />
-          <WeatherButton cities={cities} setCity={setCity} />
+          <WeatherButton
+            cities={cities}
+            handleCityChange={handleCityChange}
+            selected={city === null ? 'Current' : city}
+          />
         </div>
       )}
     </div>

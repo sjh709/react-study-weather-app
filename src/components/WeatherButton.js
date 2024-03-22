@@ -1,16 +1,14 @@
 import React from 'react';
 
-const WeatherButton = ({ cities, setCity }) => {
+const WeatherButton = ({ cities, handleCityChange, selected }) => {
   return (
     <div className='button-area'>
-      <div>
-        <button className='btn-item'>C</button>
-        <div>Current</div>
-      </div>
-
       {cities.map((item, index) => (
         <div key={index}>
-          <button className='btn-item' onClick={() => setCity(item)}>
+          <button
+            className={`btn-item ${selected === item ? 'select-city' : ''}`}
+            onClick={() => handleCityChange(item)}
+          >
             {item[0]}
           </button>
           <div>{item}</div>

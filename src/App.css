@@ -96,3 +96,7 @@ body {
   background-color: rgba(0, 0, 0, 0.6);
   border-color: powderblue;
 }
+
+.btn-item.select-city {
+  border-color: #d070fb;
+}
