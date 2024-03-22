@@ -1,14 +1,25 @@
 import React from 'react';
 
-const WeatherBox = () => {
+const WeatherBox = ({ weather, today }) => {
   return (
-    <div className='weather-area'>
-      <div className='date-item'>2024년 3월 21일 (목)</div>
-      <div className='city-name'>Seoul</div>
-      <div className='weather-wrapper'>
-        <div className='weather-title'>CLEAR SKY</div>
-        <img width={100} height={100} />
-        <div className='weather-temp'>8.96 °C / 48.13 °F</div>
+    <div className='background-img'>
+      <div className='weather-area'>
+        <div className='date-item'>
+          {today &&
+            `${today[0]}년 ${today[1]}월 ${today[2]}일 (${today[3]}) ${today[4]}:${today[5]}`}
+        </div>
+        <div className='city-name'>{weather?.name}</div>
+        <div className='weather-wrapper'>
+          <div className='weather-title'>{weather?.weather[0].description}</div>
+          <img
+            width={80}
+            height={80}
+            src={`http://openweathermap.org/img/wn/${weather?.weather[0].icon}.png`}
+          />
+          <div className='weather-temp'>
+            {weather?.main.temp} °C / {weather?.main.temp * 1.8 + 32} °F
+          </div>
+        </div>
       </div>
     </div>
   );

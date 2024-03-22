@@ -4,6 +4,7 @@
 
 body {
   background-color: #d1e0fc;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .main {
@@ -14,6 +15,12 @@ body {
   align-items: center;
   justify-content: center;
   gap: 20px;
+}
+
+.background-img {
+  background-image: url('../public/sky.jpg');
+  background-size: cover;
+  border-radius: 20px;
 }
 
 .weather-area {
@@ -36,6 +43,7 @@ body {
   font-size: 2rem;
   font-weight: bold;
   letter-spacing: 7px;
+  font-style: italic;
 }
 
 .weather-wrapper {
@@ -48,7 +56,7 @@ body {
   justify-content: center;
   align-items: center;
   gap: 10px;
-  margin-top: 10px;
+  margin-top: 15px;
   align-self: center;
 }
 
@@ -66,12 +74,25 @@ body {
   width: 572px;
   display: flex;
   justify-content: space-between;
+  text-align: center;
+  color: #666a73;
 }
 
 .btn-item {
   width: 80px;
   height: 80px;
   border-radius: 25px;
-  background-color: #bebebe;
+  background-color: #666a73;
   border: none;
+  cursor: pointer;
+  margin-bottom: 5px;
+  font-size: 2.5rem;
+  font-weight: bold;
+  border: 3px solid #bebebe;
+  color: white;
+}
+
+.btn-item:hover {
+  background-color: rgba(0, 0, 0, 0.6);
+  border-color: powderblue;
 }

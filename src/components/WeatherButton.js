@@ -3,11 +3,26 @@ import React from 'react';
 const WeatherButton = () => {
   return (
     <div className='button-area'>
-      <button className='btn-item'>현재위치</button>
-      <button className='btn-item'>타이페이</button>
-      <button className='btn-item'>파리</button>
-      <button className='btn-item'>런던</button>
-      <button className='btn-item'>제주</button>
+      <div>
+        <button className='btn-item'>C</button>
+        <div>Current</div>
+      </div>
+      <div>
+        <button className='btn-item'>T</button>
+        <div>Taipei</div>
+      </div>
+      <div>
+        <button className='btn-item'>P</button>
+        <div>Paris</div>
+      </div>
+      <div>
+        <button className='btn-item'>L</button>
+        <div>London</div>
+      </div>
+      <div>
+        <button className='btn-item'>J</button>
+        <div>Jeju</div>
+      </div>
     </div>
   );
 };

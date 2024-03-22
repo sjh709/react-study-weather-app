@@ -6,6 +6,9 @@ import WeatherButton from './components/WeatherButton';
 const API_KEY = process.env.REACT_APP_WEATHER_KEY;
 
 function App() {
+  const [weather, setWeather] = useState(null);
+  const [today, setToday] = useState(null);
+
   const getCurrentLocation = () => {
     navigator.geolocation.getCurrentPosition((position) => {
       let lat = position.coords.latitude;
@@ -15,27 +18,21 @@ function App() {
   };
 
   const getWeatherByCurrentLocation = async (lat, lon) => {
-    let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}`;
+    let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`;
     let response = await fetch(url);
     let data = await response.json();
-    console.log('data', data);
+    setWeather(data);
   };
 
   const getCurrentDate = () => {
-    const day = [
-      '일요일',
-      '월요일',
-      '화요일',
-      '수요일',
-      '목요일',
-      '금요일',
-      '토요일',
-    ];
+    const day = ['일', '월', '화', '수', '목', '금', '토'];
     let now = new Date();
     let year = now.getFullYear();
     let month = now.getMonth() + 1;
     let date = now.getDate();
-    console.log('today', year, month, date, day[now.getDay()]);
+    let hours = now.getHours();
+    let minutes = (now.getMinutes() < 10 ? '0' : '') + now.getMinutes();
+    setToday([year, month, date, day[now.getDay()], hours, minutes]);
   };
 
   useEffect(() => {
@@ -45,7 +42,7 @@ function App() {
 
   return (
     <div className='main'>
-      <WeatherBox />
+      <WeatherBox weather={weather} today={today} />
       <WeatherButton />
     </div>
   );
