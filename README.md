@@ -1,8 +1,8 @@
 # 🌦️ 날씨 앱 (weather-app)
 
-<!-- <img width="1532" alt="image" src=""> -->
+<img width="1532" alt="image" src="https://github.com/sjh709/react-study-rockpaperscissors/assets/42454759/798869fb-e406-4934-938c-0d49296c9292">
 
-<!-- - 배포 URL :  -->
+- 배포 URL : https://react-weather-app.netlify.app/
 
 <br>
 
@@ -24,7 +24,18 @@
 ## 3. 프로젝트 구조
 
 ```
-
+📦src
+ ┣ 📂components
+ ┃ ┣ 📜WeatherBox.js
+ ┃ ┗ 📜WeatherButton.js
+ ┣ 📜App.css
+ ┣ 📜App.js
+ ┣ 📜App.test.js
+ ┣ 📜index.css
+ ┣ 📜index.js
+ ┣ 📜logo.svg
+ ┣ 📜reportWebVitals.js
+ ┗ 📜setupTests.js
 ```
 
 <br>
