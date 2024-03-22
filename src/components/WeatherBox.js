@@ -17,7 +17,8 @@ const WeatherBox = ({ weather, today }) => {
             src={`http://openweathermap.org/img/wn/${weather?.weather[0].icon}.png`}
           />
           <div className='weather-temp'>
-            {weather?.main.temp} °C / {weather?.main.temp * 1.8 + 32} °F
+            {weather?.main.temp} °C /{' '}
+            {(weather?.main.temp * 1.8 + 32).toFixed(3)} °F
           </div>
         </div>
       </div>
